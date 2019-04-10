@@ -36,7 +36,7 @@ namespace SmtpServer.IO
         /// <param name="bufferReadTimeout">The timeout to apply to each buffer read.</param>
         internal NetworkClient(Stream stream, int bufferLength, TimeSpan bufferReadTimeout) : this(stream, bufferLength)
         {
-            _stream.ReadTimeout = (int)bufferReadTimeout.TotalMilliseconds;
+            if (_stream.CanTimeout) _stream.ReadTimeout = (int)bufferReadTimeout.TotalMilliseconds;
         }
 
         /// <summary>
